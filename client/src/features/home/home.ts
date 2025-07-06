@@ -49,8 +49,9 @@ export class Home implements OnInit {
   private calculateStats(apps: Application[]): ApplicationStats {
     const total = apps.length;
     const pending = apps.filter(a => a.status === 'Pending').length;
+    const applied = apps.filter(p => p.status === 'Applied').length;
     const interviews = apps.filter(a => a.status === 'Interview').length;
-    const responses = total - pending;
+    const responses = total - (applied + pending);
     const responseRate = total > 0 ? Math.round((responses / total) * 100) : 0;
 
     console.log(`
