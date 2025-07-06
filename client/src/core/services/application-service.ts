@@ -16,4 +16,9 @@ export class ApplicationService {
   getApplication(id: number) {
     return this.http.get<Application>(this.baseUrl + 'jobapplication/' + id);
   }
+
+  createApplication(jobDeets: any) {
+    console.log("Job Deets: ", jobDeets)
+    return this.http.post<Application>(this.baseUrl + 'jobapplication', jobDeets);
+  }
 }

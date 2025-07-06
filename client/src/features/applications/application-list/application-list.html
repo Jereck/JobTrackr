@@ -1,5 +1,139 @@
-<div>
-  @for (application of applications$ | async; track application.id) {
-    <p>{{ application.jobTitle }}</p>
-  }
+<div class="bg-white shadow-lg rounded-lg overflow-hidden w-5/6 mx-auto mt-10">
+  <!-- Table Header -->
+  <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+    <h3 class="text-lg font-medium text-gray-900">Job Applications</h3>
+    <p class="mt-1 text-sm text-gray-600">Track and manage your job applications</p>
+  </div>
+
+  <!-- Table Container -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <!-- Table Head -->
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Job Details
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Company & Location
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Application Info
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Salary
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Date Applied
+          </th>
+        </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody class="bg-white divide-y divide-gray-200">
+        @for (application of applications$ | async; track application.id) {
+          <tr class="hover:bg-gray-50 transition-colors duration-150">
+            <!-- Job Details -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex flex-col">
+                <div class="text-sm font-medium text-gray-900">
+                  {{ application.jobTitle }}
+                </div>
+                @if (application.notes) {
+                  <div class="text-xs text-gray-500 mt-1 truncate max-w-xs" [title]="application.notes">
+                    {{ application.notes }}
+                  </div>
+                }
+              </div>
+            </td>
+
+            <!-- Company & Location -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex flex-col">
+                <div class="text-sm font-medium text-gray-900">
+                  {{ application.companyName }}
+                </div>
+                <div class="text-sm text-gray-500">
+                  {{ application.location }}
+                </div>
+              </div>
+            </td>
+
+            <!-- Status -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span 
+                class="inline-flex px-2 py-1 text-xs font-semibold rounded-full"
+                [ngClass]="getStatusClass(application.status)"
+              >
+                {{ application.status }}
+              </span>
+            </td>
+
+            <!-- Application Info -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex flex-col">
+                <div class="text-sm text-gray-900">
+                  {{ application.applicationSource }}
+                </div>
+                <div class="text-xs text-gray-500">
+                  Resume: {{ application.resumeUsed }}
+                </div>
+              </div>
+            </td>
+
+            <!-- Salary -->
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              @if (application.salary) {
+                <span class="font-medium">
+                  {{ application.salary | currency:'USD':'symbol':'1.0-0' }}
+                </span>
+              } @else {
+                <span class="text-gray-400">Not specified</span>
+              }
+            </td>
+
+            <!-- Date Applied -->
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ application.dateApplied | date:'MMM d, y' }}
+            </td>
+
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="px-6 py-12 text-center">
+              <div class="flex flex-col items-center">
+                <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <h3 class="text-sm font-medium text-gray-900 mb-1">No applications found</h3>
+                <p class="text-sm text-gray-500">Get started by adding your first job application.</p>
+                <button 
+                  type="button"
+                  class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-150"
+                  (click)="addApplication()"
+                >
+                  Add Application
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Table Footer (optional) -->
+  <div class="bg-gray-50 px-6 py-3 border-t border-gray-200">
+    <div class="flex items-center justify-between">
+      <div class="text-sm text-gray-700">
+        Showing {{ (applications$ | async)?.length || 0 }} applications
+      </div>
+      <div class="flex space-x-2">
+        <!-- Add pagination controls here if needed -->
+      </div>
+    </div>
+  </div>
 </div>

@@ -32,7 +32,6 @@ public class JobApplicationController(AppDbContext context) : ControllerBase
   {
     var application = new JobApplication
     {
-      Id = 2,
       JobTitle = app.JobTitle,
       CompanyName = app.CompanyName,
       Location = app.Location,
