@@ -28,10 +28,12 @@ A job application tracker to stay organized during the job hunt.
 ---
 
 ## Project Structure
+```
 DevSprint-Project1-JobTrackr/
 ├── API/ # ASP.NET Core Web API
 ├── client/ # Angular 20 frontend
 └── README.md # You're here!
+```
 
 ---
 
@@ -57,5 +59,5 @@ I felt like the obvious thing to make on Day 1, was a job tracker. Like most peo
 It's hard to keep track of if I applied to the same job on to vs. the other. So this is my attempt to help not spam the poor recruiters.
 
 ## Connect With Me
-Github: [Here](https://github.com/Jereck)
-LinkedIn: [Here](https://www.linkedin.com/in/jake-reck/)
+* Github: [Here](https://github.com/Jereck)
+* LinkedIn: [Here](https://www.linkedin.com/in/jake-reck/)
