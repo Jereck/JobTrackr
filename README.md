@@ -1,6 +1,6 @@
-# DevSprint – Project 1: JobTrackr
+# BAD – Project 1: JobTrackr
 
-**DevSprint** is my challenge to build and ship a new app every day using the C#/.NET stack — until I land my next software developer role.
+**BAD** or "**B**uild an **A**pp a **D**ay" is my challenge to build a new app every day using the C#/.NET stack — until I land my next software developer role.
 
 ---
 

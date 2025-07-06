@@ -1,0 +1,5 @@
+<div>
+  @for (application of applications$ | async; track application.id) {
+    <p>{{ application.jobTitle }}</p>
+  }
+</div>
