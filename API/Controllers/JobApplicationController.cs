@@ -47,4 +47,39 @@ public class JobApplicationController(AppDbContext context) : ControllerBase
     await context.SaveChangesAsync();
     return application;
   }
+
+  [HttpPut("{id}")]
+  public async Task<ActionResult<JobApplication>> UpdateJobApplication(int id, [FromBody] JobApplication updatedApp)
+  {
+    var application = await context.JobApplications.FindAsync(id);
+
+    if (application == null) return NotFound();
+
+    application.JobTitle = updatedApp.JobTitle;
+    application.CompanyName = updatedApp.CompanyName;
+    application.Location = updatedApp.Location;
+    application.ApplicationSource = updatedApp.ApplicationSource;
+    application.ResumeUsed = updatedApp.ResumeUsed;
+    application.Status = updatedApp.Status;
+    application.Salary = updatedApp.Salary;
+    application.DateApplied = updatedApp.DateApplied;
+    application.Notes = updatedApp.Notes;
+
+    await context.SaveChangesAsync();
+
+    return application;
+  }
+
+  [HttpDelete("{id}")]
+  public async Task<IActionResult> DeleteJobApplication(int id)
+  {
+    var application = await context.JobApplications.FindAsync(id);
+
+    if (application == null) return NotFound();
+
+    context.JobApplications.Remove(application);
+    await context.SaveChangesAsync();
+
+    return NoContent();
+  }
 }

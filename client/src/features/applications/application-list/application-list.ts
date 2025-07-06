@@ -3,10 +3,11 @@ import { ApplicationService } from '../../../core/services/application-service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Application } from '../../../types/application';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-application-list',
-  imports: [AsyncPipe, CommonModule],
+  imports: [AsyncPipe, CommonModule, RouterLink],
   templateUrl: './application-list.html',
   styleUrl: './application-list.css'
 })

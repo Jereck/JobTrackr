@@ -18,7 +18,14 @@ export class ApplicationService {
   }
 
   createApplication(jobDeets: any) {
-    console.log("Job Deets: ", jobDeets)
     return this.http.post<Application>(this.baseUrl + 'jobapplication', jobDeets);
+  }
+
+  updateApplication(id: number, updatedJobDeets: any) {
+    return this.http.put<Application>(this.baseUrl + 'jobapplication/' + id, updatedJobDeets);
+  }
+
+  deleteApplication(id: number) {
+    return this.http.delete(this.baseUrl + 'jobapplication/' + id)
   }
 }
