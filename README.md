@@ -1,6 +1,6 @@
-# BAD – Project 1: JobTrackr
+# BAAAD – Project 1: JobTrackr
 
-**BAD** or "**B**uild an **A**pp a **D**ay" is my challenge to build a new app every day using the C#/.NET stack — until I land my next software developer role.
+**BAAAD** or "**B**uild **A**n **A**pp **A** **D**ay" is my challenge to build a new app every day using the C#/.NET stack — until I land my next software developer role.
 
 ---
 
